@@ -1,0 +1,16 @@
+#!/bin/bash
+
+echo "This is a test" | sed 's/test/another test'
+
+for file in ./*
+do
+    if [ -d "$file" ];then
+        echo "$file is a directory"
+    elif [ -f "$file" ];then
+        if [[ $file == *"_x64"* ]]; then
+                mv "$file" "`echo $file | sed "s/_x64/_amd64/"`";
+        fi
+    else
+        echo "$file is unknown item"
+    fi
+done
